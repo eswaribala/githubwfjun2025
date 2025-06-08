@@ -1,13 +1,15 @@
-name: Push Workflow
+name: Pull Request Checks
 
 on:
-  push:
+  pull_request:
     branches:
-      - master  # or 'master', or any branch you want
+      - master        # Target branch of the PR
+    types: [opened, synchronize, reopened]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
+
     services:
       postgres:
         image: postgres:16
@@ -26,11 +28,12 @@ jobs:
     env:
       DB_NAME: payrolldb
       DB_USER: postgres
-      DB_PASSWORD: potsgres
+      DB_PASSWORD: postgres
       DB_HOST: localhost
       DB_PORT: 5432
+
     steps:
-      - name: Checkout repository code
+      - name: Checkout PR code
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -43,5 +46,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r payrollapplication/requirements.txt
 
-      - name: Run a script (example)
+      - name: Wait for DB
+        run: |
+          until pg_isready -h localhost -p 5432; do echo "Waiting for DB..."; sleep 1; done
+
+      - name: Run migrations
+        run: python payrollapplication//manage.py migrate
+
+      - name: Run tests
         run: python payrollapplication/manage.py test
