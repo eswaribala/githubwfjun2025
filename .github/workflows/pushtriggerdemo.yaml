@@ -24,4 +24,4 @@ jobs:
           pip install -r payrollapplication/requirements.txt
 
       - name: Run a script (example)
-        run: python -m  payrollapplication/manage.py runserver
+        run: python payrollapplication/manage.py runserver
