@@ -1,4 +1,4 @@
-name: Daily Cleanup Job
+name: ClockScheduler
 
 on:
   schedule:                    # Auto trigger every 2 mins
@@ -22,4 +22,4 @@ jobs:
           python -m pip install --upgrade pip
 
       - name: Run cleanup script
-        run: python day1/currenttime.py
+        run: python day1/currentdateime.py
