@@ -1,4 +1,4 @@
-name: Python Environments CI
+name: Matrix Environments CI
 
 on:
   push:
