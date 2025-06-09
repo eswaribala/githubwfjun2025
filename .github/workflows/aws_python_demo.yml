@@ -19,11 +19,11 @@ jobs:
 
       - name: Copy files to EC2
         run: |
-          rsync -avz -e "ssh -i ec2_key.pem -o StrictHostKeyChecking=no" ./day1 ${{ secrets.EC2_SECRET_KEY }}:/home/ec2-user/app
+          rsync -avz -e "ssh -i ec2_key.pem -o StrictHostKeyChecking=no" ./day1 ${{ secrets.EC2_HOST }}:/home/ec2-user/app
 
       - name: Run Python app on EC2
         run: |
-          ssh -i ec2_key.pem -o StrictHostKeyChecking=no ${{ secrets.EC2_SECRET_KEY }} "
+          ssh -i ec2_key.pem -o StrictHostKeyChecking=no ${{ secrets.EC2_HOST }} "
             cd /home/ec2-user/app &&
             ${{ secrets.EC2_PYTHON_PATH || 'python3' }} currentdatetime.py
           "
