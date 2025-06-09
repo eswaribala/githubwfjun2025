@@ -27,5 +27,5 @@ jobs:
         with:
           context: .
           push: true
-          file: ./EMPLOYEEAPIDOCKER/Dockerfile     # Path to Dockerfile
+          file: ./employeeapidocker/Dockerfile     # Path to Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/django-app:latest
