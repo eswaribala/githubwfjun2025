@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master  # or 'master'
+      
 
 jobs:
   build:
