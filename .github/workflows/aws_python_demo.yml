@@ -3,6 +3,7 @@ name: Deploy Python App to EC2
 on:
   push:
     branches: [ master ]
+    
 
 jobs:
   deploy:
