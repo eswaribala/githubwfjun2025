@@ -30,3 +30,13 @@ jobs:
           push: true
           file: ./employeeapidocker/Dockerfile     # Path to Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/django-app:latest
+          
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: v1.29.0
+
+      - name: Configure Kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG_CONTENT }}" > ~/.kube/config
