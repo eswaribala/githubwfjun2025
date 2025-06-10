@@ -40,3 +40,8 @@ jobs:
         run: |
           mkdir -p ~/.kube
           echo "${{ secrets.KUBECONFIG_CONTENT }}" > ~/.kube/config
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -f postgres-pv.yaml
+          kubectl apply -f postgres-deployment.yaml
+          kubectl rollout status deployment/django-deployment
