@@ -1,0 +1,34 @@
+name: Auto Merge dev into main
+
+on:
+  workflow_dispatch:   # manually trigger
+  push:
+    branches:
+      - feature2            # or run on dev pushes
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+         token: ${{ secrets.GITTOKEN }}
+         ref: master
+
+      - name: Configure Git
+        run: |
+          git config user.name "eswaribala"
+          git config user.email "parameswaribala@gmail.com"
+
+      - name: Fetch all branches
+        run: git fetch origin
+
+      - name: Merge feature2 into master
+        env:
+          GH_TOKEN: ${{ secrets.GIT_TOKEN }}
+        run: |
+          git checkout master
+          git merge origin/feature2 -m "Auto-merge feature2 into master"
+          git push origin master
