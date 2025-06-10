@@ -30,5 +30,5 @@ jobs:
           GH_TOKEN: ${{ secrets.GITTOKEN }}
         run: |
           git switch master
-          git merge origin/feature2 -m "Auto-merge feature2 into master"
+          git merge origin/feature2 -m "Auto-merge feature2 into master" --allow-unrelated-histories
           git push origin master
