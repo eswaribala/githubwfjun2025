@@ -14,7 +14,7 @@ jobs:
         script-path:
           - ./day1/setdemo.py
           - ./day1/tupledemo.py
-          - ./day1/typecoversion.py
+          - ./day1/typeconversion.py
 
     steps:
       - name: Checkout code
