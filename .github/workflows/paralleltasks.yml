@@ -13,7 +13,7 @@ jobs:
       matrix:
         script-path:
           - ./day1/setdemo.py
-          - ./day1/tupledemo.py
+          - ./day1/otpgenerator.py
           - ./day1/typeconversion.py
 
     steps:
