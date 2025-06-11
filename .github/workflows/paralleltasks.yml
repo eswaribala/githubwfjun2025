@@ -3,8 +3,7 @@ name: Parallel Python Matrix
 
 on:
   push:
-    branches: [ master ]
-  
+    branches: [ master ]  
 
 jobs:
   run-scripts:
